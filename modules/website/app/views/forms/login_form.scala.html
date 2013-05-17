@@ -1,0 +1,29 @@
+@(dropdownMode : Boolean = false)(loginForm : Form[User])
+
+@import helper._
+@implicitField = @{ FieldConstructor(custom_helpers.field_constructor.f) }
+
+<div class="container-fluid">
+
+@form(controllers.website.routes.Users.authenticate) {
+  @loginForm.globalError.map { error =>
+  <div class="alert alert-error">
+    <b>@Messages("form.login.error")</b> @error.message
+  </div>
+  }
+
+  @inputText(loginForm("email"), '_label -> Messages("form.login.label.email"), 'placeholder -> Messages("form.login.label.email"), '_help -> Messages("form.login.help.email"))
+  @inputPassword(loginForm("password"), '_label -> Messages("form.login.label.password"), 'placeholder -> Messages("form.login.label.password"))
+  
+  @custom_helpers.checkbox(loginForm("remember_me"), '_label -> None, '_text -> Messages("form.login.checkbox.remember_me"))
+
+  @if(dropdownMode) {
+  <button class="btn btn-primary btn-block" style="margin: 10px 0 0 0" type="submit" name="login">@Messages("form.login.button.submit")</button>
+  } else {
+  <div style="margin-top: 20px; margin-bottom: 20px">
+  <button class="btn btn-primary" type="submit">@Messages("form.login.button.submit")</button>
+  </div>
+  }
+}
+
+</div>

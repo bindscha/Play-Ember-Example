@@ -1,0 +1,50 @@
+@()(implicit request: Request[AnyContent], user: User)
+
+@implicitUserOption = @{ Some(user) }
+
+@template {
+
+  @Messages("title.index") &middot; @Messages("app.name")
+
+} {
+  
+} {
+  
+  <script src="@website.routes.Assets.at("js/lib/plurals.js")" type="text/javascript"></script>
+  <script src="@website.routes.Assets.at("js/lib/ember-i18n.js")" type="text/javascript"></script>
+  <script src="@website.routes.Assets.at("js/lib/ember-extensions.js")" type="text/javascript"></script>
+  <script src="@website.routes.Assets.at("js/lib/ember-bindscha.js")" type="text/javascript"></script>
+  <script src="@website.routes.Assets.at("js/helpers/forms.js")" type="text/javascript"></script>
+  <script src="@website.routes.Assets.at("js/helpers/messages.js")" type="text/javascript"></script>
+  
+  <script src="@website.routes.Assets.at("js/app.js")" type="text/javascript"></script>
+  <script src="@website.routes.Assets.at("js/store.js")" type="text/javascript"></script>
+  <script src="@website.routes.Assets.at("js/router.js")" type="text/javascript"></script>
+  <script src="@website.routes.Assets.at("js/routes/index_route.js")" type="text/javascript"></script>
+  
+  <script src="@website.routes.Assets.at("js/models/alarm.js")" type="text/javascript"></script>
+  <script src="@website.routes.Assets.at("js/controllers/alarms_controller.js")" type="text/javascript"></script>
+  <script src="@website.routes.Assets.at("js/views/alarms_view.js")" type="text/javascript"></script>
+  <script src="@website.routes.Assets.at("js/routes/alarms_route.js")" type="text/javascript"></script>
+  
+  <script type="text/x-handlebars" data-template-name="application">
+    @navbar(request, Some(user))
+
+    <div class="content">
+      <div class="push"><!--//--></div>
+      <div class="container-fluid">
+	    <div class="row-fluid">
+	      {{outlet}}
+	    </div>
+      </div>
+      <div class="push"><!--//--></div>
+    </div>
+    
+    @footer(request, Some(user))
+  </script>
+  
+  @handlebars.resource("alarm", "alarms", List("date", "priority", "status", "code", "description"), Some("date"))
+  
+} {
+  
+}

@@ -1,0 +1,45 @@
+@(implicit request: Request[AnyContent], user: Option[User] = None)
+  
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="@website.routes.Application.index">Play/Ember Sample</a>
+          <div class="nav-collapse">
+            @user.map { _ => 
+            <ul class="nav">
+		      <li><a href="@website.routes.Application.index"><i class="icon-dashboard icon-white"></i> {{t submenu.dashboard}}</a></li>
+		      <li><a href="#"><i class="icon-wrench icon-white"></i> {{t submenu.setup}}</a></li>
+            </ul>
+            }
+
+            @user match {
+              case Some(u) => {
+            <ul class="nav pull-right">
+              <li class="dropdown">
+                <a href="#" id="dropdown-logout" role="button" class="dropdown-toggle" data-toggle="dropdown">@u.email <b class="caret"></b></a>
+                <div class="dropdown-menu" style="padding: 15px 0 15px 0;" role="menu" aria-labelledby="dropdown-logout">
+                  @user_details()(request, u)
+                </div>
+              </li>
+            </ul>
+                }
+              case _ => {
+            <ul class="nav pull-right">
+              <li class="dropdown">
+                <a href="#" id="dropdown-login" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i> @Messages("button.user.sign_in")</a>
+                <div class="dropdown-menu" style="padding: 15px 0 15px 0;" role="menu" aria-labelledby="dropdown-login">
+                  @forms.login_form(true)(controllers.website.Users.LOGIN_FORM)
+                </div>
+              </li>
+            </ul>
+                }
+            }
+          </div><!-- !.nav-collapse -->
+        </div>
+      </div>
+    </div><!-- End .navbar -->

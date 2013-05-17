@@ -1,0 +1,38 @@
+@(title: Html)(headAppend: Html)(tailAppend: Html)(content: Html)(implicit request: Request[AnyContent], user: Option[User] = None, assetsController: com.bindscha.playmate.boilerplate.controllers.AssetsController = controllers.website.ApplicationAssetsController)
+
+@import com.bindscha.playmate.boilerplate.views.html._
+@import controllers.website._
+
+@boilerplate_bootstrap {
+
+  @title
+  
+} {
+
+  @assetsController.stylesheet("application")
+  
+  @headAppend
+  
+} {
+  
+  <!-- Handlebars -->
+  @assetsController.script(ApplicationAssets.HANDLEBARS)
+  
+  <!-- Ember -->
+  @assetsController.script(ApplicationAssets.EMBER)
+  @assetsController.script(ApplicationAssets.EMBER_DATA)
+  
+  <!-- Bootstrap js -->
+  <script src="@website.routes.Assets.at("js/bootstrap.js")" type="text/javascript"></script>
+
+  @tailAppend
+  
+} {
+  
+} {
+  
+} {
+
+  @content
+    
+}

@@ -1,0 +1,68 @@
+title.index=Administration area
+title.login=Please log in to proceed...
+
+menu.index=Home
+
+submenu.dashboard=Dashboard
+submenu.setup=Setup
+
+button.user.sign_in=Sign in
+button.user.sign_out=Sign out
+button.user.settings=Settings
+
+form.login.error=Oh snap!
+form.login.label.email=Email
+form.login.label.password=Password
+form.login.help.email=Please provide a valid email address
+form.login.button.submit=Sign in
+form.login.checkbox.remember_me=Keep me signed in
+form.login.link.sign_up=Sign up
+form.login.link.no_account=Don't have an account?
+form.login.link.forgot_password=Forgot your password?
+form.login.text.or=or
+
+button.load_more=Load more...
+button.search=Search
+button.create=Create
+button.save=Save
+button.cancel=Cancel
+button.remove=Remove
+button.edit=Edit
+button.update=Update
+
+dashboard.page_title=Dashboard
+dashboard.page_subtitle=Everything at a glance
+
+graph.page_title=Graph
+graph.page_subtitle=States of your resources and dependencies between them
+
+alarm.page_title=Alarms
+alarm.page_subtitle=Problems, bugs, performance issues, crashes and other unexpected conditions
+
+alarm.label=Alarm
+alarm.date.label=Date
+alarm.priority.label=Priority
+alarm.status.label=Status
+alarm.code.label=Code
+alarm.description.label=Description
+
+alarm.legend.show=Alarm Details
+alarm.legend.edit=Edit Alarm
+alarm.legend.new=Create Alarm
+
+alarm.filter.placeholder=Search alarms...
+
+alarm.list.heading.all=Alarms
+alarm.list.heading.filtered=Filtered Alarms
+alarm.list.empty=No alarm to show!
+
+watchlist.page_title=Watchlist
+watchlist.page_subtitle=Resolved problems being watched for a while to prevent history from repeating itself
+
+troubleshoot.page_title=Troubleshooting Wizard
+troubleshoot.page_subtitle=Guiding you through the resolution of problems
+
+settings.page_title=Settings
+settings.page_subtitle=Configure your RADAR
+
+misc.help_label=help

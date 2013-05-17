@@ -1,0 +1,17 @@
+@()(implicit request: Request[AnyContent], user: User)
+
+                  <div class="container-fluid" style="min-width: 300px">
+                    <address>
+                      <strong>@user.fullName</strong><br>
+                      @user.email
+                    </address>
+                    <div class="row-fluid">
+                      <div class="span6">
+                        <a class="btn btn-block" href="#">@Messages("button.user.settings")</a>
+                      </div>
+                      <div class="span6">
+                        <a class="btn btn-block" href="@controllers.website.routes.Users.logout">@Messages("button.user.sign_out")</a>
+                      </div>
+                    </div>
+                  </div>
+                

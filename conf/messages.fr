@@ -1,0 +1,5 @@
+app.name=PlayEmberSample
+app.slogan=A sample Play/Ember application
+app.short_description=A sample Play/Ember application.
+
+company.name=LakeMind

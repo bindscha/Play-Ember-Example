@@ -1,0 +1,17 @@
+GET     /v1/alarms                                  controllers.api.AlarmsController.index(account_id: Long)
+GET     /v1/alarms/new                              controllers.api.AlarmsController._new_(account_id: Long)
+POST    /v1/alarms                                  controllers.api.AlarmsController.create(account_id: Long)
+GET     /v1/alarms/:id                              controllers.api.AlarmsController.show(account_id: Long, id: Long)
+GET     /v1/alarms/:id/edit                         controllers.api.AlarmsController.edit(account_id: Long, id: Long)
+PUT     /v1/alarms/:id                              controllers.api.AlarmsController.update(account_id: Long, id: Long)
+DELETE  /v1/alarms/:id                              controllers.api.AlarmsController.delete(account_id: Long, id: Long)
+
+GET     /v1/accounts/:account_id/alarms             controllers.api.AlarmsController.index(account_id: Long)
+GET     /v1/accounts/:account_id/alarms/new         controllers.api.AlarmsController._new_(account_id: Long)
+POST    /v1/accounts/:account_id/alarms             controllers.api.AlarmsController.create(account_id: Long)
+GET     /v1/accounts/:account_id/alarms/:id         controllers.api.AlarmsController.show(account_id: Long, id: Long)
+GET     /v1/accounts/:account_id/alarms/:id/edit    controllers.api.AlarmsController.edit(account_id: Long, id: Long)
+PUT     /v1/accounts/:account_id/alarms/:id         controllers.api.AlarmsController.update(account_id: Long, id: Long)
+DELETE  /v1/accounts/:account_id/alarms/:id         controllers.api.AlarmsController.delete(account_id: Long, id: Long)
+
+GET     /assets/*file                      controllers.api.Assets.at(path="/public", file)

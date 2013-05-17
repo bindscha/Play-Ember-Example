@@ -1,0 +1,35 @@
+@(form : Form[User] = controllers.website.Users.LOGIN_FORM)(implicit request: Request[AnyContent], user: Option[User] = None)
+
+@template {
+
+  @Messages("title.login") &middot; @Messages("app.name")
+
+} {
+  
+} {
+
+} {
+
+  <div class="application">
+    @navbar(request, user)
+    
+    <div class="content">
+      <div class="push"><!--//--></div>
+        <div class="container-fluid" style="padding-top: 20px; padding-bottom: 20px">
+	      <div class="row-fluid">
+	        <div class="span5 offset1">
+	          <p class="lead"><strong>@Messages("app.name")</strong> - @Messages("app.short_description")</p> 
+	          <img style="display: block; margin-left: auto; margin-right: auto" src="@controllers.website.routes.Assets.at("img/logo-300x150.png")">
+	        </div>
+	        <div class="span5" style="padding-top: 50px;">
+	          @forms.login_form(false)(form)
+	        </div>
+	      </div>
+	    </div>
+      <div class="push"><!--//--></div>
+    </div>
+    
+   @footer(request, user)
+  </div>
+
+}

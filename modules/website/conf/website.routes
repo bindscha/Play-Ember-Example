@@ -1,0 +1,20 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                                              controllers.website.Application.index
+
+# Session management
+GET     /login                                         controllers.website.Users.login
+POST    /login                                         controllers.website.Users.authenticate
+GET     /logout                                        controllers.website.Users.logout
+
+# i18n
+GET     /assets/js/helpers/messages.js                 controllers.website.Ember.messages(locale: Option[String], prefix: Option[String])
+
+# Javascript routing
+GET     /assets/javascripts/routes                     controllers.website.Application.javascriptRoutes
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file                                  controllers.website.Assets.at(path="/public", file)

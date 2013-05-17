@@ -1,0 +1,121 @@
+@(name: String, plural: String, attributes: List[String], listAttribute: Option[String] = None)
+
+  <script type="text/x-handlebars" data-template-name="_@{name}_show_dl">
+    <dl class="dl-horizontal">
+      @for(attribute <- attributes) {
+        {{#if @{attribute}}}
+		  <dt>{{t @{name + "." + attribute}.label}}:</dt>
+		  <dd>{{@{attribute}}}</dd>
+	    {{/if}}
+      }
+	  </dl>
+  </script>
+  
+  <script type="text/x-handlebars" data-template-name="_@{name}_edit_fields">
+    @for(attribute <- attributes) {
+    <div class="control-group">
+	  <label class="control-label" for="@{attribute}">{{t @{name + "." + attribute}.label}}</label>
+	  <div class="controls">
+		{{view Ember.TextField valueBinding="@{attribute}" id="@{attribute}" placeholderTranslation="@{name + "." + attribute}.label" required="true"}}
+	  </div>
+	</div>
+    }
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="@{name}_edit">
+   <form {{action save on="submit"}} class="form-horizontal">
+	  <legend>{{t "@{name}.legend.edit"}}</legend>
+	
+	  {{partial "@{name}_edit_fields"}}
+	
+	  <div class="form-actions">
+	    <button type="submit" class="btn btn-primary"><i class='icon-save'></i> {{t button.update}}</button>
+		<button class="btn" {{action cancel}}><i class='icon-undo'></i> {{t button.cancel}}</button>
+	  </div>
+	</form>
+   </script>
+
+   <script type="text/x-handlebars" data-template-name="@{name}_show">
+   <form {{action save on="submit"}} class="form-horizontal">
+	  <legend>{{t "@{name}.legend.show"}}</legend>
+	  
+	  {{partial "@{name}_show_dl"}}
+	  
+	  <div class="form-actions">
+	    <a class="btn btn" {{action startEditing}}><i class="icon-edit"></i> {{t button.edit}}</a>
+	    <a class="btn btn-danger" {{action destroyRecord}}><i class="icon-trash"></i> {{t button.remove}}</a>
+	  </div>
+	</form>
+   </script>
+
+  <script type="text/x-handlebars" data-template-name="@{name}_in_list">
+    {{#linkTo "@{name}" @{name}}}{{@{name}.@{listAttribute getOrElse attributes.head}}}{{/linkTo}}
+  </script>
+  
+  <script type="text/x-handlebars" data-template-name="@{name}">
+    {{#if controller.isEditing}}
+	  {{render "@{name}Edit"}}
+	{{else}}
+	  {{render "@{name}Show"}}
+	{{/if}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="@{name}s/new">
+    <form {{action save on="submit"}} class="form-horizontal">
+	  <legend>{{t "@{name}.legend.new"}}</legend>
+	
+	  {{partial "@{name}_edit_fields"}}
+	
+	  <div class="form-actions">
+	    <button type="submit" class="btn btn-primary"><i class='icon-save'></i> {{t button.create}}</button>
+		<button class="btn" {{action cancel}}><i class="icon-undo"></i> {{t button.cancel}}</button>
+	  </div>
+	</form>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="@{name}s">
+    <div class="row-fluid">
+      <div class="page-header">
+        <div class="btn-group pull-right">
+          {{#linkTo "@{plural}.new" class="btn btn-large"}}<i class="icon-plus-sign icon-large"></i>{{/linkTo}}
+        </div>
+		<h1>{{t @{name}.page_title}} <small>{{t @{name}.page_subtitle}}</small> <small>(<a href="#">{{t misc.help_label}}</a>)</small></h1>
+      </div>
+    </div>
+    <div class="row-fluid">
+    <div class="span3">
+	  <div class="well sidebar-nav" style="padding: 8px 0;">
+	    <div class="row-fluid" style="margin-top: 20px; margin-bottom: 20px;">
+          <form class="form-search">
+            <div class="input-append span12 pagination-centered">
+		      {{view App.@{name.capitalize}SearchView class="search-query" valueBinding="controller.filterValue" placeholderTranslation="@{name}.filter.placeholder"}}
+              <button id="search-button" class="btn" {{action "search"}}><i class="icon-search"></i></button>
+            </div>
+          </form>
+        </div>
+		<ul class="nav nav-list">
+		  <li class="nav-header">
+		    {{#if controller.filterValue}}
+		      {{t @{name}.list.heading.filtered}}
+		    {{else}}
+		      {{t @{name}.list.heading.all}}
+		    {{/if}}
+		  </li>
+		  {{#each @{name} in controller.filteredContent}}
+			{{view App.@{name.capitalize}InListView contentBinding="@{name}"}}
+		  {{else}}
+            <i>{{t @{name}.list.empty}}</i>
+		  {{/each}}
+		  {{#if controller.hasMore}}
+		    <li class="divider"></li>
+		    <btn class="btn btn-link" {{action "more"}}>{{t button.load_more}}</a>
+		  {{/if}}
+		</ul>
+	  </div>
+	</div>
+	<div class="span9">
+	  {{outlet}}
+	</div>
+    </div>
+  </script>
+  

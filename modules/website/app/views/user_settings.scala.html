@@ -1,0 +1,26 @@
+@()(implicit request: Request[AnyContent], user: User)
+
+@implicitUserOption = @{ Some(user) }
+
+@template {
+
+  @Messages("app.name") &middot; @Messages("title.global")
+
+} {
+  
+} {
+  
+} {
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="page-header">
+		  <h1>@Messages("user.settings.page_title") <small>@Messages("user.settings.page_subtitle")</small> <small>(<a href="#">@Messages("misc.help_label")</a></small>)</h1>
+		</div>
+      </div>
+      <div class="row-fluid">
+        
+      </div>
+    </div>
+
+}
